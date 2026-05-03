@@ -116,18 +116,24 @@ Page({
 
   selectTime(e) {
     const time = e.currentTarget.dataset.time;
-    const onlineTime = this.data.formData.onlineTime.slice();
-    const index = onlineTime.indexOf(time);
+    let onlineTime = this.data.formData.onlineTime;
+    
+    if (!Array.isArray(onlineTime)) {
+      onlineTime = [];
+    }
+    
+    const newOnlineTime = onlineTime.slice();
+    const index = newOnlineTime.indexOf(time);
 
     if (index > -1) {
-      onlineTime.splice(index, 1);
+      newOnlineTime.splice(index, 1);
       wx.showToast({ title: '已取消选择', icon: 'none', duration: 1000 });
     } else {
-      onlineTime.push(time);
+      newOnlineTime.push(time);
       wx.showToast({ title: `已添加${time}`, icon: 'success', duration: 1000 });
     }
 
-    this.setData({ 'formData.onlineTime': onlineTime });
+    this.setData({ 'formData.onlineTime': newOnlineTime });
   },
 
   toggleVoice(e) {

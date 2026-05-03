@@ -6,11 +6,6 @@
         <view wx:else class="avatar">{{userInfo.nickName.charAt(0)}}</view>
         <view class="info-content">
           <view class="nickname">{{userInfo.nickName}}</view>
-          <view class="auth-status {{authStatus}}">
-            <text wx:if="{{authStatus === 'verified'}}">✅ 已认证</text>
-            <text wx:elif="{{authStatus === 'pending'}}">⏳ 认证中</text>
-            <text wx:else>❌ 未认证</text>
-          </view>
         </view>
         <view class="edit-btn" bindtap="goToEditProfile">
           <text>编辑</text>

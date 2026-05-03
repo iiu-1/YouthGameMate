@@ -11,17 +11,19 @@
   align-items: center;
   background: #F5F5F5;
   border-radius: 50rpx;
-  padding: 20rpx 30rpx;
+  padding: 16rpx 24rpx;
   margin-right: 20rpx;
 }
 
-.search-bar .icon {
-  margin-right: 16rpx;
+.search-icon {
+  margin-right: 12rpx;
+  flex-shrink: 0;
 }
 
-.search-bar .placeholder {
-  color: #999999;
+.search-input {
+  flex: 1;
   font-size: 26rpx;
+  color: #333333;
 }
 
 .filter-btn {

@@ -21,12 +21,12 @@ Page({
     filterTags: FILTER_TAGS,
     filters: {
       game: 'all',
-      rank: '',
       gender: '',
       tags: []
     },
     activeGame: 'all',
-    showFilter: false
+    showFilter: false,
+    searchKey: ''
   },
 
   onLoad() {
@@ -39,20 +39,36 @@ Page({
 
   applyList() {
     const all = store.getPostsFeed();
-    const { activeGame, filters } = this.data;
+    const { activeGame, filters, searchKey } = this.data;
     const merged = {
       game: activeGame,
       gender: filters.gender,
-      rank: filters.rank,
       tags: filters.tags
     };
-    const posts = store.filterPosts(all, merged);
+    let posts = store.filterPosts(all, merged);
+    if (searchKey) {
+      const key = searchKey.toLowerCase();
+      posts = posts.filter((p) => {
+        return (p.title && p.title.toLowerCase().includes(key)) ||
+               (p.content && p.content.toLowerCase().includes(key)) ||
+               (p.gameName && p.gameName.toLowerCase().includes(key)) ||
+               (p.tags && p.tags.some(t => t.toLowerCase().includes(key)));
+      });
+    }
     this.setData({ posts });
   },
 
   onGameTap(e) {
     const game = e.currentTarget.dataset.game;
     this.setData({ activeGame: game });
+    this.applyList();
+  },
+
+  onSearchInput(e) {
+    this.setData({ searchKey: e.detail.value });
+  },
+
+  onSearchConfirm(e) {
     this.applyList();
   },
 
@@ -63,11 +79,6 @@ Page({
   setFilterGender(e) {
     const gender = e.currentTarget.dataset.gender;
     this.setData({ 'filters.gender': gender === undefined ? '' : gender });
-  },
-
-  setFilterRank(e) {
-    const rank = e.currentTarget.dataset.rank;
-    this.setData({ 'filters.rank': rank === undefined ? '' : rank });
   },
 
   toggleFilterTag(e) {
@@ -86,8 +97,9 @@ Page({
 
   resetFilters() {
     this.setData({
-      filters: { game: 'all', rank: '', gender: '', tags: [] },
-      activeGame: 'all'
+      filters: { game: 'all', gender: '', tags: [] },
+      activeGame: 'all',
+      searchKey: ''
     });
     this.applyList();
   },

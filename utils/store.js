@@ -317,11 +317,10 @@ function enrichPostListItem(p) {
   };
 }
 
-function filterPosts(list, { game, gender, rank, tags }) {
+function filterPosts(list, { game, gender, tags }) {
   return list.filter((p) => {
     if (game && game !== 'all' && p.game !== game) return false;
     if (gender && p.authorGender !== gender) return false;
-    if (rank && p.rank !== rank) return false;
     if (tags && tags.length) {
       const has = tags.some((t) => (p.tags || []).indexOf(t) >= 0);
       if (!has) return false;

@@ -2,8 +2,15 @@
 <view class="container has-bottom-nav">
   <view class="header">
     <view class="search-bar">
-      <text class="icon">🔍</text>
-      <text class="placeholder">搜索游戏搭子...</text>
+      <icon type="search" class="search-icon" size="14"/>
+      <input
+        class="search-input"
+        placeholder="搜索游戏搭子..."
+        value="{{searchKey}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+        confirm-type="search"
+      />
     </view>
     <view class="filter-btn" bindtap="toggleFilter">
       <text>筛选</text>
@@ -83,21 +90,6 @@
           <view class="option {{filters.gender === '' ? 'active' : ''}}" bindtap="setFilterGender" data-gender="">不限</view>
           <view class="option {{filters.gender === 'male' ? 'active' : ''}}" bindtap="setFilterGender" data-gender="male">男</view>
           <view class="option {{filters.gender === 'female' ? 'active' : ''}}" bindtap="setFilterGender" data-gender="female">女</view>
-        </view>
-      </view>
-
-      <view class="filter-section">
-        <view class="section-title">帖子段位标签</view>
-        <view class="filter-options">
-          <view class="option {{filters.rank === '' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="">不限</view>
-          <view class="option {{filters.rank === '青铜' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="青铜">青铜</view>
-          <view class="option {{filters.rank === '白银' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="白银">白银</view>
-          <view class="option {{filters.rank === '黄金' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="黄金">黄金</view>
-          <view class="option {{filters.rank === '铂金' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="铂金">铂金</view>
-          <view class="option {{filters.rank === '钻石' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="钻石">钻石</view>
-          <view class="option {{filters.rank === '星耀' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="星耀">星耀</view>
-          <view class="option {{filters.rank === '王者' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="王者">王者</view>
-          <view class="option {{filters.rank === '王牌' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="王牌">王牌</view>
         </view>
       </view>
 

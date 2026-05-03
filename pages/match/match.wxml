@@ -1,0 +1,106 @@
+<view class="container">
+  <view class="match-header">
+    <view class="header-inner">
+      <view class="header-top">
+        <view class="logo-area">
+          <text class="logo-icon">🎮</text>
+          <view class="title-wrap">
+            <text class="header-title">游戏匹配</text>
+            <text class="header-subtitle">发现志同道合的队友</text>
+          </view>
+        </view>
+        <view class="refresh-btn" bindtap="loadRecommendations">
+          <text class="refresh-icon">↻</text>
+        </view>
+      </view>
+      
+      <view class="filter-bar">
+        <view class="filter-chips">
+          <view 
+            class="chip {{filters.sameMajor ? 'active' : ''}}" 
+            bindtap="toggleSameMajor"
+          >
+            <text class="chip-text">同年级</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="match-content">
+    <view class="loading-state" wx:if="{{loading}}">
+      <view class="loading-anim">
+        <view class="loading-dot"></view>
+        <view class="loading-dot"></view>
+        <view class="loading-dot"></view>
+      </view>
+      <text class="loading-text">正在为你匹配...</text>
+    </view>
+
+    <block wx:elif="{{recommendations.length > 0}}">
+      <view class="result-header">
+        <text class="result-count">共 {{recommendations.length}} 位玩家</text>
+      </view>
+      
+      <view class="card-list">
+        <view 
+          wx:for="{{recommendations}}" 
+          wx:key="_id"
+          class="match-card"
+          bindtap="goToUserHome"
+          data-id="{{item._id}}"
+        >
+          <view class="card-main">
+            <view class="avatar-ring">
+              <view class="avatar {{item.matchScore >= 80 ? 'avatar-hot' : ''}}">
+                {{item.nickname ? item.nickname.charAt(0) : '玩'}}
+              </view>
+              <view class="avatar-glow"></view>
+            </view>
+
+            <view class="user-info">
+              <view class="name-row">
+                <text class="nickname">{{item.nickname}}</text>
+                <view class="gender-dot {{item.gender === 1 ? 'male' : 'female'}}"></view>
+                <text class="grade-text">{{item.grade}}</text>
+              </view>
+              
+              <view class="games-row" wx:if="{{item.games && item.games.length > 0}}">
+                <text wx:for="{{item.games}}" wx:for-item="game" wx:key="*this" class="game-chip">
+                  {{game}}
+                </text>
+              </view>
+
+              <view class="tags-row" wx:if="{{item.tags && item.tags.length > 0}}">
+                <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag-item">
+                  {{tag}}
+                </text>
+              </view>
+            </view>
+
+            <view class="score-area">
+              <view class="score-badge {{item.matchScore >= 80 ? 'hot' : item.matchScore >= 60 ? 'warm' : 'normal'}}">
+                <text class="score-num">{{item.matchScore}}</text>
+                <text class="score-label">匹配度</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="card-footer">
+            <button class="chat-btn" catchtap="startChat" data-id="{{item._id}}">
+              <text class="chat-icon">💬</text>
+              <text class="chat-text">发消息</text>
+            </button>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class="empty-state" wx:else>
+      <view class="empty-icon">🔍</view>
+      <text class="empty-title">暂无匹配结果</text>
+      <text class="empty-desc">先完善自己的游戏档案，获得更精准的匹配</text>
+      <button class="btn-primary" bindtap="goToProfile">去完善资料</button>
+    </view>
+  </view>
+</view>

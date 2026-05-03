@@ -1,0 +1,42 @@
+{
+  "collectionName": "conversations",
+  "description": "会话表",
+  "fields": [
+    {
+      "fieldName": "_id",
+      "type": "string",
+      "description": "会话ID"
+    },
+    {
+      "fieldName": "participants",
+      "type": "array",
+      "description": "参与者openid列表"
+    },
+    {
+      "fieldName": "lastMessage",
+      "type": "string",
+      "description": "最后一条消息"
+    },
+    {
+      "fieldName": "lastMessageTime",
+      "type": "date",
+      "description": "最后消息时间"
+    },
+    {
+      "fieldName": "createTime",
+      "type": "date",
+      "description": "创建时间"
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "participants",
+      "fieldName": "participants"
+    },
+    {
+      "indexName": "lastMessageTime",
+      "fieldName": "lastMessageTime",
+      "desc": true
+    }
+  ]
+}

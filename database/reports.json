@@ -1,0 +1,56 @@
+{
+  "collectionName": "reports",
+  "description": "举报表",
+  "fields": [
+    {
+      "fieldName": "_id",
+      "type": "string",
+      "description": "举报ID"
+    },
+    {
+      "fieldName": "reporterId",
+      "type": "string",
+      "description": "举报者openid"
+    },
+    {
+      "fieldName": "reportedUserId",
+      "type": "string",
+      "description": "被举报用户openid"
+    },
+    {
+      "fieldName": "postId",
+      "type": "string",
+      "description": "相关帖子ID(可选)"
+    },
+    {
+      "fieldName": "reason",
+      "type": "string",
+      "description": "举报原因"
+    },
+    {
+      "fieldName": "description",
+      "type": "string",
+      "description": "详细描述"
+    },
+    {
+      "fieldName": "status",
+      "type": "string",
+      "description": "处理状态 pending-待处理 resolved-已处理 rejected-已拒绝"
+    },
+    {
+      "fieldName": "createTime",
+      "type": "date",
+      "description": "创建时间"
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "status",
+      "fieldName": "status"
+    },
+    {
+      "indexName": "reportedUserId",
+      "fieldName": "reportedUserId"
+    }
+  ]
+}

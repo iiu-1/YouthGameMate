@@ -1,0 +1,10 @@
+function includes(arr, item) {
+  if (!arr || !arr.length) return false;
+  var i = 0;
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i] === item) return true;
+  }
+  return false;
+}
+
+module.exports.includes = includes;

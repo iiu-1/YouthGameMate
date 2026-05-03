@@ -1,0 +1,71 @@
+<view class="container has-bottom-nav">
+  <view class="tabs">
+    <view 
+      class="tab {{activeTab === 'private' ? 'active' : ''}}" 
+      bindtap="switchTab"
+      data-tab="private"
+    >
+      私聊消息
+    </view>
+    <view 
+      class="tab {{activeTab === 'system' ? 'active' : ''}}" 
+      bindtap="switchTab"
+      data-tab="system"
+    >
+      系统通知
+    </view>
+  </view>
+
+  <view class="message-list" wx:if="{{activeTab === 'private'}}">
+    <view class="loading-state" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+
+    <block wx:elif="{{conversations.length > 0}}">
+      <view 
+        wx:for="{{conversations}}" 
+        wx:key="_id"
+        class="conversation-item"
+        bindtap="goToChat"
+        data-id="{{item._id}}"
+        data-userid="{{item.otherUser._openid}}"
+      >
+        <view class="avatar avatar-text">{{item.otherUser.nickname ? item.otherUser.nickname.charAt(0) : '用'}}</view>
+        <view class="conv-content">
+          <view class="conv-header">
+            <text class="nickname">{{item.otherUser.nickname || '用户'}}</text>
+            <text class="time">{{item.lastMessageTime}}</text>
+          </view>
+          <view class="conv-preview">
+            <text class="last-message">{{item.lastMessage || '暂无消息'}}</text>
+            <view class="unread-badge" wx:if="{{item.unreadCount > 0}}">
+              {{item.unreadCount > 99 ? '99+' : item.unreadCount}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class="empty-state" wx:else>
+      <text class="empty-icon">💬</text>
+      <text>暂无消息</text>
+      <text class="sub-text">快去广场找游戏搭子聊天吧~</text>
+    </view>
+  </view>
+
+  <view class="notification-list" wx:if="{{activeTab === 'system'}}">
+    <block wx:if="{{systemNotifications.length > 0}}">
+      <view wx:for="{{systemNotifications}}" wx:key="_id" class="notification-item card">
+        <text class="n-title">{{item.title}}</text>
+        <text class="n-body">{{item.content}}</text>
+        <text class="n-time">{{item.time}}</text>
+      </view>
+    </block>
+    <view class="empty-state" wx:else>
+      <text class="empty-icon">📢</text>
+      <text>暂无系统通知</text>
+    </view>
+  </view>
+
+  <bottom-nav active="message" />
+</view>

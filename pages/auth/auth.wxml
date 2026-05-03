@@ -1,0 +1,126 @@
+<view class="container">
+  <view class="status-card card" wx:if="{{authStatus !== 'none'}}">
+    <view class="status-icon">
+      <text wx:if="{{authStatus === 'verified'}}">✅</text>
+      <text wx:elif="{{authStatus === 'pending'}}">⏳</text>
+      <text wx:else>❌</text>
+    </view>
+    <view class="status-text">
+      <text wx:if="{{authStatus === 'verified'}}">您已完成校园认证</text>
+      <text wx:elif="{{authStatus === 'pending'}}">认证申请正在审核中</text>
+      <text wx:else>认证未通过</text>
+    </view>
+  </view>
+
+  <view class="step-content" wx:if="{{authStatus === 'none' || authStatus === 'rejected'}}">
+    <view class="step-indicator">
+      <view class="step {{currentStep >= 1 ? 'active' : ''}}">1</view>
+      <view class="step-line {{currentStep > 1 ? 'active' : ''}}"></view>
+      <view class="step {{currentStep >= 2 ? 'active' : ''}}">2</view>
+    </view>
+
+    <view class="step-1" wx:if="{{currentStep === 1}}">
+      <view class="info-notice">
+        <text class="notice-icon">ℹ️</text>
+        <text class="notice-text">校园认证可提高你的可信度，让更多同学愿意和你组队</text>
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">学号 <text class="required">*</text></view>
+        <input 
+          class="form-input" 
+          type="number"
+          placeholder="请输入你的学号"
+          value="{{formData.studentId}}"
+          bindinput="onStudentIdInput"
+          maxlength="20"
+        />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">真实姓名 <text class="required">*</text></view>
+        <input 
+          class="form-input" 
+          placeholder="请输入你的真实姓名"
+          value="{{formData.realName}}"
+          bindinput="onNameInput"
+          maxlength="20"
+        />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">学校名称 <text class="required">*</text></view>
+        <input 
+          class="form-input" 
+          placeholder="请输入学校名称"
+          value="{{formData.school}}"
+          bindinput="onSchoolInput"
+          maxlength="50"
+        />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">校区（选填）</view>
+        <input 
+          class="form-input" 
+          placeholder="如：XX校区"
+          value="{{formData.campus}}"
+          bindinput="onCampusInput"
+          maxlength="30"
+        />
+      </view>
+
+      <view class="error-msg" wx:if="{{errorMsg}}">
+        <text>{{errorMsg}}</text>
+      </view>
+
+      <view class="action-bar">
+        <button class="btn-primary" bindtap="nextStep">下一步</button>
+      </view>
+    </view>
+
+    <view class="step-2" wx:if="{{currentStep === 2}}">
+      <view class="confirm-info">
+        <view class="info-row">
+          <text class="label">学号</text>
+          <text class="value">{{formData.studentId}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">姓名</text>
+          <text class="value">{{formData.realName}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">学校</text>
+          <text class="value">{{formData.school}}</text>
+        </view>
+        <view class="info-row" wx:if="{{formData.campus}}">
+          <text class="label">校区</text>
+          <text class="value">{{formData.campus}}</text>
+        </view>
+      </view>
+
+      <view class="notice-text">
+        <text>请确认以上信息真实有效，审核通过后将无法修改</text>
+      </view>
+
+      <view class="error-msg" wx:if="{{errorMsg}}">
+        <text>{{errorMsg}}</text>
+      </view>
+
+      <view class="action-bar">
+        <button class="btn-secondary" bindtap="prevStep">上一步</button>
+        <button class="btn-primary" bindtap="submitAuth">确认提交</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="auth-tips card">
+    <view class="tips-title">认证说明</view>
+    <view class="tips-list">
+      <text>1. 校园认证仅需学号和姓名</text>
+      <text>2. 你的信息仅用于身份验证，不会公开显示</text>
+      <text>3. 认证审核通常在1-3个工作日内完成</text>
+      <text>4. 如有问题请联系客服</text>
+    </view>
+  </view>
+</view>

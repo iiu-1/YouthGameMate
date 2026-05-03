@@ -1,0 +1,158 @@
+<wxs module="t" src="../../utils/text.wxs" />
+<view class="container has-bottom-nav">
+  <view class="step-indicator">
+    <view class="step {{step >= 1 ? 'active' : ''}}">
+      <view class="step-num">1</view>
+      <text class="step-text">选择游戏</text>
+    </view>
+    <view class="step-line {{step > 1 ? 'active' : ''}}"></view>
+    <view class="step {{step >= 2 ? 'active' : ''}}">
+      <view class="step-num">2</view>
+      <text class="step-text">填写信息</text>
+    </view>
+    <view class="step-line {{step > 2 ? 'active' : ''}}"></view>
+    <view class="step {{step >= 3 ? 'active' : ''}}">
+      <view class="step-num">3</view>
+      <text class="step-text">发布</text>
+    </view>
+  </view>
+
+  <view class="step-content">
+    <view class="step-1" wx:if="{{step === 1}}">
+      <view class="section-title">选择游戏</view>
+      <view class="game-grid">
+        <view 
+          wx:for="{{gameList}}" 
+          wx:key="id"
+          class="game-item {{formData.game === item.id ? 'selected' : ''}}"
+          bindtap="selectGame"
+          data-id="{{item.id}}"
+        >
+          <text wx:if="{{item.iconEmoji}}" class="game-icon-emoji">{{item.iconEmoji}}</text>
+          <image wx:else class="game-icon-img" src="{{item.iconSrc}}" mode="aspectFit" />
+          <text class="game-name">{{item.name}}</text>
+        </view>
+      </view>
+      
+      <view class="selected-info" wx:if="{{selectedGame}}">
+        <text wx:if="{{selectedGame.iconEmoji}}" class="selected-game-emoji">{{selectedGame.iconEmoji}}</text>
+        <image wx:else class="selected-game-icon" src="{{selectedGame.iconSrc}}" mode="aspectFit" />
+        <text class="selected-game-text">已选择：{{selectedGame.name}}</text>
+      </view>
+
+      <view class="action-bar">
+        <button class="btn-primary" bindtap="nextStep" wx:if="{{formData.game}}">下一步</button>
+        <button class="btn-disabled" wx:else>请先选择游戏</button>
+      </view>
+    </view>
+
+    <view class="step-2" wx:if="{{step === 2}}">
+      <view class="form-group">
+        <view class="form-label">标题 <text class="required">*</text></view>
+        <input 
+          class="form-input" 
+          placeholder="如：求队友一起上分"
+          value="{{formData.title}}"
+          bindinput="onTitleInput"
+          maxlength="30"
+        />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">详情描述 <text class="required">*</text></view>
+        <textarea 
+          class="form-textarea" 
+          placeholder="介绍一下自己、期望的队友、玩法风格等..."
+          value="{{formData.content}}"
+          bindinput="onContentInput"
+          maxlength="500"
+        />
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">人数</view>
+        <view class="count-picker">
+          <view class="count-btn" bindtap="adjustPeopleCount" data-type="minus">-</view>
+          <text class="count-num">{{formData.peopleCount}}</text>
+          <view class="count-btn" bindtap="adjustPeopleCount" data-type="add">+</view>
+        </view>
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">有效期</view>
+        <view class="duration-picker">
+          <view 
+            wx:for="{{durationList}}" 
+            wx:key="value"
+            class="duration-item {{formData.duration === item.value ? 'selected' : ''}}"
+            bindtap="setDuration"
+            data-value="{{item.value}}"
+          >
+            {{item.label}}
+          </view>
+        </view>
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">标签（可选，最多5个）</view>
+        <view class="tags-picker">
+          <view 
+            wx:for="{{availableTags}}" 
+            wx:key="*this"
+            class="tag-item {{t.includes(formData.tags, item) ? 'selected' : ''}}"
+            bindtap="toggleTag"
+            data-tag="{{item}}"
+          >
+            {{item}}
+          </view>
+        </view>
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">性别要求</view>
+        <view class="gender-picker">
+          <view class="gender-item {{formData.gender === '' ? 'selected' : ''}}" bindtap="setGender" data-gender="">不限</view>
+          <view class="gender-item {{formData.gender === 'male' ? 'selected' : ''}}" bindtap="setGender" data-gender="male">男</view>
+          <view class="gender-item {{formData.gender === 'female' ? 'selected' : ''}}" bindtap="setGender" data-gender="female">女</view>
+        </view>
+      </view>
+
+      <view class="form-group">
+        <view class="switch-item">
+          <text>仅本校可见</text>
+          <switch checked="{{formData.onlySchool}}" bindchange="toggleOnlySchool" color="#6C5CE7" />
+        </view>
+      </view>
+
+      <view class="action-bar">
+        <button class="btn-secondary" bindtap="prevStep">上一步</button>
+        <button class="btn-primary" bindtap="nextStep">下一步</button>
+      </view>
+    </view>
+
+    <view class="step-3" wx:if="{{step === 3}}">
+      <view class="preview-card card">
+        <view class="preview-header">
+          <text class="preview-game">{{formData.gameName}}</text>
+          <text class="preview-duration">{{formData.duration === 0 ? '永久有效' : formData.duration + '天后过期'}}</text>
+        </view>
+        <view class="preview-title">{{formData.title || '未填写标题'}}</view>
+        <view class="preview-content">{{formData.content || '未填写详情'}}</view>
+        <view class="preview-tags" wx:if="{{formData.tags.length > 0}}">
+          <text wx:for="{{formData.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
+        </view>
+        <view class="preview-meta">
+          <text>需要 {{formData.peopleCount}} 人</text>
+          <text wx:if="{{formData.gender}}">限{{formData.gender === 'male' ? '男' : '女'}}</text>
+        </view>
+      </view>
+
+      <view class="action-bar">
+        <button class="btn-secondary" bindtap="prevStep">上一步</button>
+        <button class="btn-primary" bindtap="submitPost">确认发布</button>
+      </view>
+    </view>
+  </view>
+
+  <bottom-nav active="publish" />
+</view>

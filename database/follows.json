@@ -1,0 +1,34 @@
+{
+  "collectionName": "follows",
+  "description": "关注表",
+  "fields": [
+    {
+      "fieldName": "_id",
+      "type": "string",
+      "description": "关注ID"
+    },
+    {
+      "fieldName": "followerId",
+      "type": "string",
+      "description": "关注者openid"
+    },
+    {
+      "fieldName": "followingId",
+      "type": "string",
+      "description": "被关注者openid"
+    },
+    {
+      "fieldName": "createTime",
+      "type": "date",
+      "description": "创建时间"
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "followerId_followingId",
+      "fieldName": "followerId",
+      "unique": true,
+      "fields": ["followingId"]
+    }
+  ]
+}

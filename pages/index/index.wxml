@@ -1,0 +1,124 @@
+<wxs module="t" src="../../utils/text.wxs" />
+<view class="container has-bottom-nav">
+  <view class="header">
+    <view class="search-bar">
+      <text class="icon">🔍</text>
+      <text class="placeholder">搜索游戏搭子...</text>
+    </view>
+    <view class="filter-btn" bindtap="toggleFilter">
+      <text>筛选</text>
+    </view>
+  </view>
+
+  <view class="game-tabs">
+    <scroll-view scroll-x class="tab-scroll">
+      <view class="tab-list">
+        <view 
+          wx:for="{{games}}" 
+          wx:key="id"
+          class="tab-item {{activeGame === item.id ? 'active' : ''}}"
+          bindtap="onGameTap"
+          data-game="{{item.id}}"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="posts-list">
+    <block wx:if="{{posts.length > 0}}">
+      <view 
+        wx:for="{{posts}}" 
+        wx:key="_id"
+        class="post-card card"
+        bindtap="goToDetail"
+        data-id="{{item._id}}"
+      >
+        <view class="post-header">
+          <view class="avatar">{{item.nickName.charAt(0)}}</view>
+          <view class="user-info">
+            <view class="nickname">{{item.nickName}}</view>
+            <view class="meta">
+              <text class="time">{{item.timeAgo}}</text>
+            </view>
+          </view>
+          <view class="game-tag tag tag-game">{{item.gameName}}</view>
+        </view>
+
+        <view class="post-content">
+          <text class="title">{{item.title}}</text>
+          <text class="desc">{{item.content}}</text>
+        </view>
+
+        <view class="post-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+          <text wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
+        </view>
+
+        <view class="post-footer">
+          <view class="stats">
+            <text class="stat-item">💬 {{item.commentCount || 0}}</text>
+            <text class="stat-item">❤️ {{item.likeCount || 0}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <view class="empty-state" wx:else>
+      <text>暂无帖子，快来发布第一条吧~</text>
+    </view>
+  </view>
+
+  <view class="filter-panel {{showFilter ? 'show' : ''}}">
+    <view class="filter-mask" bindtap="toggleFilter"></view>
+    <view class="filter-content">
+      <view class="filter-header">
+        <text class="filter-title">筛选条件</text>
+        <text class="reset" bindtap="resetFilters">重置</text>
+      </view>
+      
+      <view class="filter-section">
+        <view class="section-title">性别（发帖人）</view>
+        <view class="filter-options">
+          <view class="option {{filters.gender === '' ? 'active' : ''}}" bindtap="setFilterGender" data-gender="">不限</view>
+          <view class="option {{filters.gender === 'male' ? 'active' : ''}}" bindtap="setFilterGender" data-gender="male">男</view>
+          <view class="option {{filters.gender === 'female' ? 'active' : ''}}" bindtap="setFilterGender" data-gender="female">女</view>
+        </view>
+      </view>
+
+      <view class="filter-section">
+        <view class="section-title">帖子段位标签</view>
+        <view class="filter-options">
+          <view class="option {{filters.rank === '' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="">不限</view>
+          <view class="option {{filters.rank === '青铜' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="青铜">青铜</view>
+          <view class="option {{filters.rank === '白银' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="白银">白银</view>
+          <view class="option {{filters.rank === '黄金' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="黄金">黄金</view>
+          <view class="option {{filters.rank === '铂金' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="铂金">铂金</view>
+          <view class="option {{filters.rank === '钻石' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="钻石">钻石</view>
+          <view class="option {{filters.rank === '星耀' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="星耀">星耀</view>
+          <view class="option {{filters.rank === '王者' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="王者">王者</view>
+          <view class="option {{filters.rank === '王牌' ? 'active' : ''}}" bindtap="setFilterRank" data-rank="王牌">王牌</view>
+        </view>
+      </view>
+
+      <view class="filter-section">
+        <view class="section-title">标签</view>
+        <view class="filter-options">
+          <view
+            wx:for="{{filterTags}}"
+            wx:key="*this"
+            class="option {{t.includes(filters.tags, item) ? 'active' : ''}}"
+            bindtap="toggleFilterTag"
+            data-tag="{{item}}"
+          >{{item}}</view>
+        </view>
+      </view>
+
+      <view class="filter-actions">
+        <button class="btn-primary" bindtap="applyFilters">应用筛选</button>
+      </view>
+    </view>
+  </view>
+
+  <bottom-nav active="index" />
+</view>

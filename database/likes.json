@@ -1,0 +1,34 @@
+{
+  "collectionName": "likes",
+  "description": "点赞表",
+  "fields": [
+    {
+      "fieldName": "_id",
+      "type": "string",
+      "description": "点赞ID"
+    },
+    {
+      "fieldName": "postId",
+      "type": "string",
+      "description": "帖子ID"
+    },
+    {
+      "fieldName": "userId",
+      "type": "string",
+      "description": "点赞者openid"
+    },
+    {
+      "fieldName": "createTime",
+      "type": "date",
+      "description": "创建时间"
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "postId_userId",
+      "fieldName": "postId",
+      "unique": true,
+      "fields": ["userId"]
+    }
+  ]
+}

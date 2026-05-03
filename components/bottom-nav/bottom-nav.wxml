@@ -1,0 +1,11 @@
+<view class="bottom-nav safe">
+  <view
+    wx:for="{{tabs}}"
+    wx:key="key"
+    class="nav-item {{active === item.key ? 'on' : ''}}"
+    data-key="{{item.key}}"
+    bindtap="onTap"
+  >
+    <text class="nav-label">{{item.label}}</text>
+  </view>
+</view>

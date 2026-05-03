@@ -1,0 +1,120 @@
+{
+  "collectionName": "posts",
+  "description": "帖子表",
+  "fields": [
+    {
+      "fieldName": "_id",
+      "type": "string",
+      "description": "帖子ID"
+    },
+    {
+      "fieldName": "userId",
+      "type": "string",
+      "description": "发布者openid"
+    },
+    {
+      "fieldName": "userInfo",
+      "type": "object",
+      "description": "发布者信息快照"
+    },
+    {
+      "fieldName": "game",
+      "type": "string",
+      "description": "游戏ID"
+    },
+    {
+      "fieldName": "gameName",
+      "type": "string",
+      "description": "游戏名称"
+    },
+    {
+      "fieldName": "title",
+      "type": "string",
+      "description": "帖子标题"
+    },
+    {
+      "fieldName": "content",
+      "type": "string",
+      "description": "帖子内容"
+    },
+    {
+      "fieldName": "rank",
+      "type": "string",
+      "description": "段位要求"
+    },
+    {
+      "fieldName": "peopleCount",
+      "type": "number",
+      "description": "需要人数"
+    },
+    {
+      "fieldName": "gender",
+      "type": "string",
+      "description": "性别要求"
+    },
+    {
+      "fieldName": "tags",
+      "type": "array",
+      "description": "标签列表"
+    },
+    {
+      "fieldName": "duration",
+      "type": "number",
+      "description": "有效期(天),0表示永久"
+    },
+    {
+      "fieldName": "onlySchool",
+      "type": "boolean",
+      "description": "是否仅本校可见"
+    },
+    {
+      "fieldName": "status",
+      "type": "string",
+      "description": "状态 active-有效 expired-过期 deleted-已删除"
+    },
+    {
+      "fieldName": "viewCount",
+      "type": "number",
+      "description": "浏览量"
+    },
+    {
+      "fieldName": "likeCount",
+      "type": "number",
+      "description": "点赞数"
+    },
+    {
+      "fieldName": "commentCount",
+      "type": "number",
+      "description": "评论数"
+    },
+    {
+      "fieldName": "createTime",
+      "type": "date",
+      "description": "创建时间"
+    },
+    {
+      "fieldName": "expireTime",
+      "type": "date",
+      "description": "过期时间"
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "userId",
+      "fieldName": "userId"
+    },
+    {
+      "indexName": "status",
+      "fieldName": "status"
+    },
+    {
+      "indexName": "game",
+      "fieldName": "game"
+    },
+    {
+      "indexName": "createTime",
+      "fieldName": "createTime",
+      "desc": true
+    }
+  ]
+}

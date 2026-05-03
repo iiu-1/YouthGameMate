@@ -1,0 +1,275 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background: #FFFFFF;
+}
+
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #F5F5F5;
+  border-radius: 50rpx;
+  padding: 20rpx 30rpx;
+  margin-right: 20rpx;
+}
+
+.search-bar .icon {
+  margin-right: 16rpx;
+}
+
+.search-bar .placeholder {
+  color: #999999;
+  font-size: 26rpx;
+}
+
+.filter-btn {
+  padding: 16rpx 28rpx;
+  background: #F0F0FF;
+  color: #6C5CE7;
+  border-radius: 50rpx;
+  font-size: 24rpx;
+}
+
+.game-tabs {
+  background: #FFFFFF;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.tab-scroll {
+  white-space: nowrap;
+}
+
+.tab-list {
+  display: flex;
+  padding: 0 20rpx;
+}
+
+.tab-item {
+  flex-shrink: 0;
+  padding: 16rpx 32rpx;
+  margin: 0 10rpx;
+  font-size: 26rpx;
+  color: #666666;
+  border-radius: 50rpx;
+  background: #F5F5F5;
+}
+
+.tab-item.active {
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+  color: #FFFFFF;
+}
+
+.posts-list {
+  padding: 20rpx 30rpx;
+}
+
+.post-card {
+  padding: 30rpx;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.post-header .avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.game-tag {
+  margin-left: auto;
+}
+
+.post-content {
+  margin-bottom: 20rpx;
+}
+
+.title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 12rpx;
+}
+
+.desc {
+  display: block;
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 1.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20rpx;
+}
+
+.post-tags .tag {
+  margin-bottom: 0;
+}
+
+.post-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #F5F5F5;
+}
+
+.stats {
+  display: flex;
+  gap: 30rpx;
+}
+
+.stat-item {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.loading-more,
+.no-more {
+  text-align: center;
+  padding: 30rpx;
+  color: #999999;
+  font-size: 24rpx;
+}
+
+.filter-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.filter-panel.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.filter-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.filter-content {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 600rpx;
+  background: #FFFFFF;
+  padding: 30rpx;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.filter-panel.show .filter-content {
+  transform: translateX(0);
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.filter-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.reset {
+  color: #6C5CE7;
+  font-size: 26rpx;
+}
+
+.filter-section {
+  margin-bottom: 40rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+  color: #333333;
+}
+
+.filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.option {
+  padding: 16rpx 28rpx;
+  background: #F5F5F5;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.option.active {
+  background: #6C5CE7;
+  color: #FFFFFF;
+}
+
+.filter-actions {
+  position: absolute;
+  bottom: 40rpx;
+  left: 30rpx;
+  right: 30rpx;
+}
+
+.filter-actions .btn-primary {
+  width: 100%;
+}

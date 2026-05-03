@@ -1,0 +1,90 @@
+<view class="post-page">
+  <view class="container empty-state" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <view class="container" wx:elif="{{post}}">
+    <view class="expired-tip" wx:if="{{expired}}">该帖子已过期或下架</view>
+    <view class="post-header card">
+      <view class="user-row" bindtap="goToUserHome">
+        <view class="avatar avatar-text">{{post.userInfo.nickname ? post.userInfo.nickname.charAt(0) : '用'}}</view>
+        <view class="user-info">
+          <text class="nickname">{{post.userInfo.nickname}}</text>
+          <text class="time">{{post.createTime}}</text>
+        </view>
+        <view class="game-tag tag tag-game">{{post.gameName}}</view>
+      </view>
+
+      <view class="post-title">{{post.title}}</view>
+      <view class="post-content">{{post.content}}</view>
+
+      <view class="post-tags" wx:if="{{post.tags && post.tags.length > 0}}">
+        <text wx:for="{{post.tags}}" wx:for-item="tag" wx:key="*this" class="tag">{{tag}}</text>
+      </view>
+
+      <view class="post-meta">
+        <text class="meta-item">👁 {{post.viewCount || 0}} 浏览</text>
+        <text class="meta-item">👥 需要 {{post.peopleCount}} 人</text>
+      </view>
+
+      <view class="owner-actions" wx:if="{{isMine}}">
+        <view class="delete-post-btn" bindtap="confirmDelete">删除帖子</view>
+      </view>
+    </view>
+
+    <view class="action-bar card">
+      <view class="action-item {{isLiked ? 'active' : ''}}" bindtap="toggleLike">
+        <text class="action-icon">{{isLiked ? '❤️' : '🤍'}}</text>
+        <text class="action-count">{{post.likeCount || 0}}</text>
+      </view>
+      <view class="action-item {{isCollected ? 'active' : ''}}" bindtap="toggleCollect">
+        <text class="action-icon">{{isCollected ? '⭐' : '☆'}}</text>
+        <text class="action-text">收藏</text>
+      </view>
+      <view class="action-item" bindtap="goToChat">
+        <text class="action-icon">💬</text>
+        <text class="action-text">私聊</text>
+      </view>
+    </view>
+
+    <view class="comments-section">
+      <view class="section-title">
+        <text>评论</text>
+        <text class="count">({{comments.length}})</text>
+      </view>
+
+      <view class="comments-list" wx:if="{{comments.length > 0}}">
+        <view wx:for="{{comments}}" wx:key="_id" class="comment-item">
+          <view class="comment-avatar avatar-text">{{item.userInfo.nickname ? item.userInfo.nickname.charAt(0) : '用'}}</view>
+          <view class="comment-content">
+            <view class="comment-header">
+              <text class="comment-name">{{item.userInfo.nickname}}</text>
+              <text class="comment-time">{{item.createTime}}</text>
+            </view>
+            <text class="comment-text">{{item.content}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="empty-comments" wx:else>
+        <text>暂无评论，快来抢沙发~</text>
+      </view>
+    </view>
+
+    <view class="bottom-bar">
+      <input
+        class="comment-input"
+        placeholder="说点什么..."
+        value="{{commentInput}}"
+        bindinput="onCommentInput"
+        confirm-type="send"
+        bindconfirm="submitComment"
+      />
+      <button class="send-btn" bindtap="submitComment">发送</button>
+    </view>
+  </view>
+
+  <view class="container empty-state" wx:else>
+    <text>帖子不存在</text>
+  </view>
+</view>

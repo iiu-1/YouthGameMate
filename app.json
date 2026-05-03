@@ -1,0 +1,25 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/match/match",
+    "pages/publish/publish",
+    "pages/message/message",
+    "pages/profile/profile",
+    "pages/post-detail/post-detail",
+    "pages/user-home/user-home",
+    "pages/chat/chat",
+    "pages/auth/auth",
+    "pages/edit-profile/edit-profile",
+    "pages/my-list/my-list"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#6C5CE7",
+    "navigationBarTitleText": "校园游搭子",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F8F9FA",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

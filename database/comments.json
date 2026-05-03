@@ -1,0 +1,47 @@
+{
+  "collectionName": "comments",
+  "description": "评论表",
+  "fields": [
+    {
+      "fieldName": "_id",
+      "type": "string",
+      "description": "评论ID"
+    },
+    {
+      "fieldName": "postId",
+      "type": "string",
+      "description": "帖子ID"
+    },
+    {
+      "fieldName": "userId",
+      "type": "string",
+      "description": "评论者openid"
+    },
+    {
+      "fieldName": "userInfo",
+      "type": "object",
+      "description": "评论者信息快照"
+    },
+    {
+      "fieldName": "content",
+      "type": "string",
+      "description": "评论内容"
+    },
+    {
+      "fieldName": "createTime",
+      "type": "date",
+      "description": "创建时间"
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "postId",
+      "fieldName": "postId"
+    },
+    {
+      "indexName": "createTime",
+      "fieldName": "createTime",
+      "desc": true
+    }
+  ]
+}

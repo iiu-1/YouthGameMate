@@ -1,0 +1,116 @@
+{
+  "collectionName": "userProfiles",
+  "description": "用户资料表",
+  "fields": [
+    {
+      "fieldName": "_openid",
+      "type": "string",
+      "description": "用户唯一标识"
+    },
+    {
+      "fieldName": "nickname",
+      "type": "string",
+      "description": "昵称"
+    },
+    {
+      "fieldName": "avatar",
+      "type": "string",
+      "description": "头像URL"
+    },
+    {
+      "fieldName": "gender",
+      "type": "number",
+      "description": "性别 0-未知 1-男 2-女"
+    },
+    {
+      "fieldName": "grade",
+      "type": "string",
+      "description": "年级"
+    },
+    {
+      "fieldName": "dormitory",
+      "type": "string",
+      "description": "宿舍楼"
+    },
+    {
+      "fieldName": "school",
+      "type": "string",
+      "description": "学校名称"
+    },
+    {
+      "fieldName": "campus",
+      "type": "string",
+      "description": "校区"
+    },
+    {
+      "fieldName": "studentId",
+      "type": "string",
+      "description": "学号"
+    },
+    {
+      "fieldName": "realName",
+      "type": "string",
+      "description": "真实姓名"
+    },
+    {
+      "fieldName": "authStatus",
+      "type": "string",
+      "description": "认证状态 none-未认证 pending-审核中 verified-已认证 rejected-拒绝"
+    },
+    {
+      "fieldName": "games",
+      "type": "array",
+      "description": "常玩游戏列表"
+    },
+    {
+      "fieldName": "rank",
+      "type": "string",
+      "description": "最高段位"
+    },
+    {
+      "fieldName": "positions",
+      "type": "array",
+      "description": "擅长位置"
+    },
+    {
+      "fieldName": "onlineTime",
+      "type": "string",
+      "description": "在线时间"
+    },
+    {
+      "fieldName": "voiceEnabled",
+      "type": "boolean",
+      "description": "是否可语音"
+    },
+    {
+      "fieldName": "bio",
+      "type": "string",
+      "description": "个人简介"
+    },
+    {
+      "fieldName": "createTime",
+      "type": "date",
+      "description": "创建时间"
+    },
+    {
+      "fieldName": "updateTime",
+      "type": "date",
+      "description": "更新时间"
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "_openid",
+      "fieldName": "_openid",
+      "unique": true
+    },
+    {
+      "indexName": "authStatus",
+      "fieldName": "authStatus"
+    },
+    {
+      "indexName": "school",
+      "fieldName": "school"
+    }
+  ]
+}

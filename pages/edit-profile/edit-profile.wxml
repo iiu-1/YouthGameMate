@@ -1,0 +1,149 @@
+<view class="container">
+  <view class="avatar-section">
+    <view class="avatar-text">{{formData.nickname ? formData.nickname.charAt(0) : '用'}}</view>
+    <button class="change-avatar-btn">更换头像</button>
+  </view>
+
+  <view class="form-section card">
+    <view class="form-item">
+      <text class="form-label">昵称</text>
+      <input 
+        class="form-value" 
+        value="{{formData.nickname}}"
+        bindinput="onNicknameInput"
+        placeholder="请输入昵称"
+        maxlength="20"
+      />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">性别</text>
+      <view class="gender-picker">
+        <view 
+          class="gender-item {{formData.gender === 1 ? 'active' : ''}}" 
+          bindtap="setGender"
+          data-gender="1"
+        >
+          男
+        </view>
+        <view 
+          class="gender-item {{formData.gender === 0 ? 'active' : ''}}" 
+          bindtap="setGender"
+          data-gender="0"
+        >
+          女
+        </view>
+      </view>
+    </view>
+
+    <view class="form-item" bindtap="toggleGradePicker">
+      <text class="form-label">年级</text>
+      <text class="form-value-placeholder {{formData.grade ? 'has-value' : ''}}">
+        {{formData.grade || '请选择'}}
+      </text>
+    </view>
+  </view>
+
+  <view class="form-section card">
+    <view class="section-title">游戏档案</view>
+
+    <view class="form-item" bindtap="toggleGamePicker">
+      <text class="form-label">常玩游戏</text>
+      <text class="form-value-placeholder {{formData.games.length > 0 ? 'has-value' : ''}}">
+        {{gamesDisplay || '请选择'}}
+      </text>
+    </view>
+
+    <view class="form-item" bindtap="toggleTimePicker">
+      <text class="form-label">在线时间</text>
+      <text class="form-value-placeholder {{formData.onlineTime ? 'has-value' : ''}}">
+        {{formData.onlineTime || '请选择'}}
+      </text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">可语音开黑</text>
+      <switch checked="{{formData.voiceEnabled}}" bindchange="toggleVoice" color="#6C5CE7"/>
+    </view>
+  </view>
+
+  <view class="form-section card">
+    <view class="form-item">
+      <text class="form-label">个人简介</text>
+    </view>
+    <textarea 
+      class="bio-input" 
+      value="{{formData.bio}}"
+      bindinput="onBioInput"
+      placeholder="介绍一下自己..."
+      maxlength="200"
+    />
+  </view>
+
+  <view class="save-bar">
+    <button class="btn-save" bindtap="saveProfile">保存</button>
+  </view>
+
+  <view class="picker-panel {{showGamePicker ? 'show' : ''}}">
+    <view class="picker-mask" bindtap="toggleGamePicker"></view>
+    <view class="picker-content">
+      <view class="picker-header">
+        <text>选择游戏</text>
+        <text bindtap="toggleGamePicker">完成</text>
+      </view>
+      <view class="picker-body">
+        <view 
+          wx:for="{{allGames}}" 
+          wx:key="id"
+          class="picker-item {{formData.games.indexOf(item.id) >= 0 ? 'selected' : ''}}"
+          bindtap="selectGame"
+          data-game="{{item.id}}"
+        >
+          {{item.name}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="picker-panel {{showGradePicker ? 'show' : ''}}">
+    <view class="picker-mask" bindtap="toggleGradePicker"></view>
+    <view class="picker-content">
+      <view class="picker-header">
+        <text>选择年级</text>
+        <text bindtap="toggleGradePicker">完成</text>
+      </view>
+      <view class="picker-body">
+        <view 
+          wx:for="{{allGrades}}" 
+          wx:key="*this"
+          class="picker-item {{formData.grade === item ? 'selected' : ''}}"
+          bindtap="selectGrade"
+          data-grade="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="picker-panel {{showTimePicker ? 'show' : ''}}">
+    <view class="picker-mask" bindtap="toggleTimePicker"></view>
+    <view class="picker-content">
+      <view class="picker-header">
+        <text>选择时间</text>
+        <text bindtap="toggleTimePicker">完成</text>
+      </view>
+      <view class="picker-body">
+        <view 
+          wx:for="{{allTimes}}" 
+          wx:key="*this"
+          class="picker-item {{formData.onlineTime === item ? 'selected' : ''}}"
+          bindtap="selectTime"
+          data-time="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

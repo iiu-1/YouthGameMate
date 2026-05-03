@@ -1,0 +1,40 @@
+<view class="page has-bottom-nav">
+  <view class="list-header card">
+    <text class="title">{{title}}</text>
+  </view>
+
+  <view class="posts-list" wx:if="{{posts.length > 0}}">
+    <view
+      wx:for="{{posts}}"
+      wx:key="_id"
+      class="post-card card"
+      bindtap="goDetail"
+      data-id="{{item._id}}"
+    >
+      <view class="row">
+        <text class="game-tag tag tag-game">{{item.gameName}}</text>
+        <text class="time">{{item.timeAgo}}</text>
+      </view>
+      <text class="post-title">{{item.title}}</text>
+      <text class="post-desc">{{item.content}}</text>
+      <view class="row footer">
+        <view class="footer-stats">
+          <text class="muted">❤ {{item.likeCount || 0}}</text>
+          <text class="muted">💬 {{item.commentCount || 0}}</text>
+        </view>
+        <text
+          wx:if="{{type === 'posts'}}"
+          class="delete-link"
+          catchtap="onDeletePost"
+          data-id="{{item._id}}"
+        >删除</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="empty-state" wx:else>
+    <text>暂无内容</text>
+  </view>
+
+  <bottom-nav active="profile" />
+</view>

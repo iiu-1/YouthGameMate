@@ -1,0 +1,85 @@
+<view class="user-page">
+<view class="loading-wrap" wx:if="{{loading}}">
+  <text class="muted">加载中...</text>
+</view>
+
+<view class="container" wx:elif="{{userProfile}}">
+  <view class="profile-header">
+    <view class="profile-banner">
+      <view class="banner-bg"></view>
+    </view>
+    
+    <view class="profile-info">
+      <view class="avatar avatar-text">{{userProfile.nickname ? userProfile.nickname.charAt(0) : '用'}}</view>
+      <view class="info-content">
+        <view class="nickname-row">
+          <text class="nickname">{{userProfile.nickname}}</text>
+          <text class="gender {{userProfile.gender === 1 ? 'male' : 'female'}}">
+            {{userProfile.gender === 1 ? '♂' : '♀'}}
+          </text>
+        </view>
+        <view class="auth-badge" wx:if="{{userProfile.authStatus === 'verified'}}">
+          <text>✅ 校园认证</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="action-buttons">
+      <button class="btn-follow {{isFollowing ? 'following' : ''}}" bindtap="toggleFollow">
+        {{isFollowing ? '已关注' : '关注'}}
+      </button>
+      <button class="btn-chat" bindtap="goToChat">💬 私聊</button>
+    </view>
+  </view>
+
+  <view class="profile-content">
+    <view class="section">
+      <view class="section-title">游戏档案</view>
+      <view class="games-list" wx:if="{{gameLabels.length > 0}}">
+        <view wx:for="{{gameLabels}}" wx:key="*this" class="game-item">
+          <text>{{item}}</text>
+        </view>
+      </view>
+      <view class="empty-text" wx:else>暂无游戏信息</view>
+    </view>
+
+    <view class="section" wx:if="{{userProfile.onlineTime}}">
+      <view class="section-title">在线时间</view>
+      <view class="time-info">
+        <text>{{userProfile.onlineTime}}</text>
+      </view>
+    </view>
+
+    <view class="section" wx:if="{{userProfile.voiceEnabled}}">
+      <view class="section-title">语音设置</view>
+      <view class="voice-info">
+        <text>✅ 可语音开黑</text>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">TA的帖子 ({{posts.length}})</view>
+      <view class="posts-list" wx:if="{{posts.length > 0}}">
+        <view 
+          wx:for="{{posts}}" 
+          wx:key="_id"
+          class="post-item"
+          bindtap="goToPostDetail"
+          data-id="{{item._id}}"
+        >
+          <view class="post-title">{{item.title}}</view>
+          <view class="post-meta">
+            <text class="game-tag">{{item.gameName}}</text>
+            <text class="time">{{item.createTime}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="empty-text" wx:else>暂无帖子</view>
+    </view>
+  </view>
+</view>
+
+<view class="container empty-state" wx:elif="{{!loading}}">
+  <text>用户不存在</text>
+</view>
+</view>

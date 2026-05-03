@@ -1,0 +1,175 @@
+.status-card {
+  text-align: center;
+  padding: 60rpx 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.status-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.status-text {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+}
+
+.step {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: #E0E0E0;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.step.active {
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+}
+
+.step-line {
+  width: 120rpx;
+  height: 4rpx;
+  background: #E0E0E0;
+  margin: 0 20rpx;
+}
+
+.step-line.active {
+  background: #6C5CE7;
+}
+
+.step-content {
+  padding: 0 30rpx;
+}
+
+.info-notice {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  background: #F0F0FF;
+  border-radius: 12rpx;
+  margin-bottom: 30rpx;
+}
+
+.notice-icon {
+  margin-right: 16rpx;
+  font-size: 32rpx;
+}
+
+.notice-text {
+  flex: 1;
+  font-size: 24rpx;
+  color: #6C5CE7;
+  line-height: 1.5;
+}
+
+.form-group {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 16rpx;
+  color: #333333;
+}
+
+.required {
+  color: #FF6B6B;
+}
+
+.form-input {
+  font-size: 28rpx;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #F0F0F0;
+}
+
+.error-msg {
+  color: #FF6B6B;
+  font-size: 24rpx;
+  text-align: center;
+  padding: 20rpx;
+}
+
+.action-bar {
+  display: flex;
+  gap: 24rpx;
+  margin-top: 40rpx;
+}
+
+.action-bar .btn-primary,
+.action-bar .btn-secondary {
+  flex: 1;
+  padding: 24rpx;
+}
+
+.confirm-info {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row .label {
+  color: #999999;
+  font-size: 28rpx;
+}
+
+.info-row .value {
+  color: #333333;
+  font-size: 28rpx;
+}
+
+.notice-text {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 30rpx;
+}
+
+.auth-tips {
+  margin: 20rpx 30rpx;
+}
+
+.tips-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.tips-list text {
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 1.6;
+}

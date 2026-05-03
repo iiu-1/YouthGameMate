@@ -1,0 +1,46 @@
+<view class="container">
+  <view class="messages-list">
+    <view class="loading-state" wx:if="{{loading}}">
+      <text>加载中...</text>
+    </view>
+
+    <view
+      wx:for="{{messages}}"
+      wx:key="_id"
+      class="message-item {{item.senderId === meId ? 'self' : 'other'}}"
+    >
+      <view
+        wx:if="{{item.senderId !== meId}}"
+        class="avatar avatar-text"
+      >{{otherUser.nickname ? otherUser.nickname.charAt(0) : '用'}}</view>
+
+      <view class="message-content">
+        <view class="message-bubble">
+          <text>{{item.content}}</text>
+        </view>
+        <text class="message-time">{{item.createTime}}</text>
+      </view>
+
+      <view
+        wx:if="{{item.senderId === meId}}"
+        class="avatar avatar-text"
+      >{{userInfo.nickName ? userInfo.nickName.charAt(0) : '我'}}</view>
+    </view>
+
+    <view class="empty-state" wx:if="{{!loading && messages.length === 0}}">
+      <text>暂无消息，开始聊天吧~</text>
+    </view>
+  </view>
+
+  <view class="input-bar">
+    <input
+      class="message-input"
+      value="{{inputValue}}"
+      bindinput="onInput"
+      placeholder="输入消息..."
+      confirm-type="send"
+      bindconfirm="sendMessage"
+    />
+    <button class="send-btn" bindtap="sendMessage">发送</button>
+  </view>
+</view>

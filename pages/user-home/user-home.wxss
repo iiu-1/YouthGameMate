@@ -1,0 +1,206 @@
+.loading-wrap {
+  padding: 80rpx;
+  text-align: center;
+}
+
+.loading-wrap .muted {
+  color: #999999;
+  font-size: 28rpx;
+}
+
+.profile-header {
+  background: #FFFFFF;
+}
+
+.profile-banner {
+  height: 200rpx;
+  overflow: hidden;
+}
+
+.banner-bg {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+}
+
+.profile-info {
+  display: flex;
+  padding: 0 30rpx;
+  margin-top: -80rpx;
+}
+
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 6rpx solid #FFFFFF;
+  margin-right: 30rpx;
+}
+
+.avatar-text {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 6rpx solid #FFFFFF;
+  margin-right: 30rpx;
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+  font-weight: 600;
+}
+
+.info-content {
+  flex: 1;
+  padding-top: 80rpx;
+}
+
+.nickname-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.nickname {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.gender {
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+  font-size: 22rpx;
+}
+
+.gender.male {
+  background: #E8F4FF;
+  color: #1890FF;
+}
+
+.gender.female {
+  background: #FFF0F0;
+  color: #FF6B6B;
+}
+
+.auth-badge {
+  display: inline-block;
+  background: #E8F8E8;
+  color: #52C41A;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20rpx;
+  padding: 30rpx;
+}
+
+.btn-follow {
+  flex: 1;
+  background: #6C5CE7;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 50rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+}
+
+.btn-follow.following {
+  background: #F5F5F5;
+  color: #666666;
+}
+
+.btn-chat {
+  flex: 1;
+  background: #F0F0FF;
+  color: #6C5CE7;
+  border: none;
+  border-radius: 50rpx;
+  padding: 24rpx;
+  font-size: 28rpx;
+}
+
+.profile-content {
+  padding: 20rpx 30rpx;
+}
+
+.section {
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+  color: #333333;
+}
+
+.games-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.game-item {
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+  color: #FFFFFF;
+  padding: 12rpx 24rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.time-info,
+.voice-info {
+  color: #666666;
+  font-size: 26rpx;
+}
+
+.empty-text {
+  color: #999999;
+  font-size: 24rpx;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.post-item {
+  padding: 20rpx;
+  background: #F8F8F8;
+  border-radius: 12rpx;
+}
+
+.post-title {
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 12rpx;
+}
+
+.post-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-meta .game-tag {
+  background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
+  color: #FFFFFF;
+  padding: 6rpx 14rpx;
+  border-radius: 6rpx;
+  font-size: 20rpx;
+}
+
+.post-meta .time {
+  font-size: 20rpx;
+  color: #999999;
+}

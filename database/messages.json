@@ -1,0 +1,51 @@
+{
+  "collectionName": "messages",
+  "description": "聊天消息表",
+  "fields": [
+    {
+      "fieldName": "_id",
+      "type": "string",
+      "description": "消息ID"
+    },
+    {
+      "fieldName": "convId",
+      "type": "string",
+      "description": "会话ID"
+    },
+    {
+      "fieldName": "senderId",
+      "type": "string",
+      "description": "发送者openid"
+    },
+    {
+      "fieldName": "receiverId",
+      "type": "string",
+      "description": "接收者openid"
+    },
+    {
+      "fieldName": "content",
+      "type": "string",
+      "description": "消息内容"
+    },
+    {
+      "fieldName": "type",
+      "type": "string",
+      "description": "消息类型 text-文本 image-图片"
+    },
+    {
+      "fieldName": "createTime",
+      "type": "date",
+      "description": "创建时间"
+    }
+  ],
+  "indexes": [
+    {
+      "indexName": "convId",
+      "fieldName": "convId"
+    },
+    {
+      "indexName": "createTime",
+      "fieldName": "createTime"
+    }
+  ]
+}

@@ -250,6 +250,15 @@ function getMe() {
   return { ...s.me };
 }
 
+function updateMe(profile) {
+  const s = ensureState();
+  const next = { ...s.me, ...profile, _id: ME_ID };
+  s.me = next;
+  s.users[ME_ID] = { ...next };
+  persist(s);
+  return getMe();
+}
+
 function saveMe(profile) {
   const s = ensureState();
   const next = { ...s.me, ...profile, _id: ME_ID };
@@ -683,6 +692,7 @@ module.exports = {
   ME_ID,
   sanitizeText,
   getMe,
+  updateMe,
   saveMe,
   getUser,
   getPostsFeed,

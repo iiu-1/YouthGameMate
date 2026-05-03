@@ -46,7 +46,7 @@ function seedState() {
       games: ['wangzhe', 'heping'],
       rank: '星耀',
       positions: ['中路', '射手'],
-      onlineTime: '晚上',
+      onlineTime: ['晚上'],
       voiceEnabled: true,
       bio: '佛系上分，可语音。',
       authStatus: 'verified'
@@ -61,7 +61,7 @@ function seedState() {
       games: ['heping', 'steam'],
       rank: '王牌',
       positions: ['指挥', '突击'],
-      onlineTime: '下午',
+      onlineTime: ['下午'],
       voiceEnabled: true,
       bio: '娱乐为主，周末在线。',
       authStatus: 'pending'
@@ -155,7 +155,7 @@ function seedState() {
     games: ['wangzhe', 'valorant'],
     rank: '钻石',
     positions: ['打野', '辅助'],
-    onlineTime: '晚上',
+    onlineTime: ['晚上'],
     voiceEnabled: true,
     bio: '找同校开黑队友',
     authStatus: 'none'

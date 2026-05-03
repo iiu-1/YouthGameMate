@@ -11,7 +11,7 @@ Page({
       gender: 1,
       grade: '大二',
       games: ['wangzhe', 'valorant'],
-      onlineTime: '晚上',
+      onlineTime: ['晚上'],
       voiceEnabled: true,
       bio: ''
     },
@@ -38,11 +38,11 @@ Page({
     const formData = {
       nickname: me.nickname || '本校玩家',
       avatarUrl: me.avatarUrl || '',
-      gender: typeof me.gender === 'number' ? me.gender : 1,
+      gender: me.gender || 1,
       grade: me.grade || '大二',
       games: me.games && me.games.length ? me.games : ['wangzhe'],
-      onlineTime: me.onlineTime || '晚上',
-      voiceEnabled: !!me.voiceEnabled,
+      onlineTime: me.onlineTime && me.onlineTime.length ? me.onlineTime : ['晚上'],
+      voiceEnabled: me.voiceEnabled !== undefined ? me.voiceEnabled : true,
       bio: me.bio || ''
     };
     this.setData({
@@ -112,8 +112,17 @@ Page({
   },
 
   selectTime(e) {
-    const t = e.currentTarget.dataset.time;
-    this.setData({ 'formData.onlineTime': t });
+    const time = e.currentTarget.dataset.time;
+    const onlineTime = this.data.formData.onlineTime.slice();
+    const index = onlineTime.indexOf(time);
+
+    if (index > -1) {
+      onlineTime.splice(index, 1);
+    } else {
+      onlineTime.push(time);
+    }
+
+    this.setData({ 'formData.onlineTime': onlineTime });
   },
 
   toggleVoice(e) {

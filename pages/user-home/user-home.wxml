@@ -43,10 +43,10 @@
       <view class="empty-text" wx:else>暂无游戏信息</view>
     </view>
 
-    <view class="section" wx:if="{{userProfile.onlineTime}}">
+    <view class="section" wx:if="{{userProfile.onlineTime && userProfile.onlineTime.length}}">
       <view class="section-title">在线时间</view>
       <view class="time-info">
-        <text>{{userProfile.onlineTime}}</text>
+        <text>{{userProfile.onlineTime.join('、')}}</text>
       </view>
     </view>
 

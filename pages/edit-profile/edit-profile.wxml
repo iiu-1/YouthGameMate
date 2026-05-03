@@ -57,8 +57,8 @@
 
     <view class="form-item" bindtap="toggleTimePicker">
       <text class="form-label">在线时间</text>
-      <text class="form-value-placeholder {{formData.onlineTime ? 'has-value' : ''}}">
-        {{formData.onlineTime || '请选择'}}
+      <text class="form-value-placeholder {{formData.onlineTime && formData.onlineTime.length ? 'has-value' : ''}}">
+        {{formData.onlineTime && formData.onlineTime.length ? formData.onlineTime.join('、') : '请选择'}}
       </text>
     </view>
 
@@ -138,7 +138,7 @@
         <view 
           wx:for="{{allTimes}}" 
           wx:key="*this"
-          class="picker-item {{formData.onlineTime === item ? 'selected' : ''}}"
+          class="picker-item {{formData.onlineTime.indexOf(item) >= 0 ? 'selected' : ''}}"
           bindtap="selectTime"
           data-time="{{item}}"
         >

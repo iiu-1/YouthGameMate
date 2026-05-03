@@ -220,6 +220,13 @@
   border: 3rpx solid rgba(102, 126, 234, 0.3);
 }
 
+.avatar-img {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  border: 3rpx solid rgba(102, 126, 234, 0.3);
+}
+
 .avatar.avatar-hot {
   border-color: #FF6B6B;
   box-shadow: 0 0 30rpx rgba(255, 107, 107, 0.3);

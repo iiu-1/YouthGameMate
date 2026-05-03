@@ -52,7 +52,8 @@
         >
           <view class="card-main">
             <view class="avatar-ring">
-              <view class="avatar {{item.matchScore >= 80 ? 'avatar-hot' : ''}}">
+              <image wx:if="{{item.avatarUrl}}" class="avatar-img" src="{{item.avatarUrl}}" mode="aspectFill"/>
+              <view wx:else class="avatar {{item.matchScore >= 80 ? 'avatar-hot' : ''}}">
                 {{item.nickname ? item.nickname.charAt(0) : '玩'}}
               </view>
               <view class="avatar-glow"></view>

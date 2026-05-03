@@ -2,7 +2,8 @@
   <view class="profile-header">
     <view class="user-card">
       <view class="user-info-section">
-        <view class="avatar">{{userInfo.nickName.charAt(0)}}</view>
+        <image wx:if="{{userInfo.avatarUrl}}" class="avatar-img" src="{{userInfo.avatarUrl}}" mode="aspectFill"/>
+        <view wx:else class="avatar">{{userInfo.nickName.charAt(0)}}</view>
         <view class="info-content">
           <view class="nickname">{{userInfo.nickName}}</view>
           <view class="auth-status {{authStatus}}">
@@ -14,6 +15,11 @@
         <view class="edit-btn" bindtap="goToEditProfile">
           <text>编辑</text>
         </view>
+      </view>
+      
+      <view wx:if="{{!userInfo.hasWxAuth}}" class="wx-login-btn" bindtap="wxLogin">
+        <text class="login-icon">📱</text>
+        <text>微信登录</text>
       </view>
     </view>
 

@@ -4,7 +4,8 @@ Page({
   data: {
     userInfo: {
       nickName: '本校玩家',
-      avatarUrl: ''
+      avatarUrl: '',
+      hasWxAuth: false
     },
     authStatus: 'none',
     stats: {
@@ -27,7 +28,8 @@ Page({
     this.setData({
       userInfo: {
         nickName: me.nickname || '本校玩家',
-        avatarUrl: me.avatarUrl || ''
+        avatarUrl: me.avatarUrl || '',
+        hasWxAuth: !!me.hasWxAuth
       },
       authStatus: me.authStatus || 'none',
       stats: {
@@ -38,6 +40,26 @@ Page({
     });
     const app = getApp();
     if (app && app.syncGlobalFromStore) app.syncGlobalFromStore();
+  },
+
+  wxLogin() {
+    wx.getUserProfile({
+      desc: '用于完善会员资料',
+      success: (res) => {
+        const userInfo = res.userInfo;
+        store.updateMe({
+          nickname: userInfo.nickName,
+          avatarUrl: userInfo.avatarUrl,
+          hasWxAuth: true
+        });
+        wx.showToast({ title: '登录成功', icon: 'success' });
+        this.onShow();
+      },
+      fail: (err) => {
+        wx.showToast({ title: '登录失败', icon: 'none' });
+        console.log('wx.getUserProfile fail:', err);
+      }
+    });
   },
 
   goToMenu(e) {

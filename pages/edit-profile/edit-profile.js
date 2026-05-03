@@ -35,13 +35,16 @@ Page({
 
   onLoad() {
     const me = store.getMe();
+    const onlineTime = me.onlineTime;
+    const formattedOnlineTime = Array.isArray(onlineTime) && onlineTime.length ? onlineTime : ['晚上'];
+    
     const formData = {
       nickname: me.nickname || '本校玩家',
       avatarUrl: me.avatarUrl || '',
       gender: me.gender || 1,
       grade: me.grade || '大二',
       games: me.games && me.games.length ? me.games : ['wangzhe'],
-      onlineTime: me.onlineTime && me.onlineTime.length ? me.onlineTime : ['晚上'],
+      onlineTime: formattedOnlineTime,
       voiceEnabled: me.voiceEnabled !== undefined ? me.voiceEnabled : true,
       bio: me.bio || ''
     };

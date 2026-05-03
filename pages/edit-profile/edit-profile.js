@@ -37,6 +37,7 @@ Page({
     const me = store.getMe();
     const formData = {
       nickname: me.nickname || '本校玩家',
+      avatarUrl: me.avatarUrl || '',
       gender: typeof me.gender === 'number' ? me.gender : 1,
       grade: me.grade || '大二',
       games: me.games && me.games.length ? me.games : ['wangzhe'],
@@ -47,6 +48,23 @@ Page({
     this.setData({
       formData,
       gamesDisplay: this.formatGames(formData.games)
+    });
+  },
+
+  changeAvatar() {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['compressed'],
+      sourceType: ['album'],
+      success: (res) => {
+        const tempFilePath = res.tempFilePaths[0];
+        this.setData({
+          'formData.avatarUrl': tempFilePath
+        });
+      },
+      fail: (err) => {
+        console.log('chooseImage fail:', err);
+      }
     });
   },
 
@@ -125,6 +143,7 @@ Page({
     try {
       store.saveMe({
         nickname: formData.nickname.trim(),
+        avatarUrl: formData.avatarUrl,
         gender: formData.gender,
         grade: formData.grade,
         games: formData.games,

@@ -43,7 +43,8 @@
         data-id="{{item._id}}"
       >
         <view class="post-header">
-          <view class="avatar">{{item.nickName.charAt(0)}}</view>
+          <image wx:if="{{item.avatarUrl}}" class="avatar-img" src="{{item.avatarUrl}}" mode="aspectFill"/>
+          <view wx:else class="avatar">{{item.nickName.charAt(0)}}</view>
           <view class="user-info">
             <view class="nickname">{{item.nickName}}</view>
             <view class="meta">
@@ -109,6 +110,17 @@
       <view class="filter-actions">
         <button class="btn-primary" bindtap="applyFilters">应用筛选</button>
       </view>
+    </view>
+  </view>
+
+  <view class="login-modal {{showLoginModal ? 'show' : ''}}">
+    <view class="login-mask" bindtap="closeLoginModal"></view>
+    <view class="login-modal-content">
+      <view class="login-icon">🎮</view>
+      <view class="login-title">欢迎来到校园游搭子</view>
+      <view class="login-desc">登录后可获取更好的体验</view>
+      <button class="login-btn" bindtap="wxLogin">微信登录</button>
+      <view class="login-tip" bindtap="closeLoginModal">稍后登录</view>
     </view>
   </view>
 

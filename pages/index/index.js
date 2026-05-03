@@ -26,14 +26,25 @@ Page({
     },
     activeGame: 'all',
     showFilter: false,
-    searchKey: ''
+    searchKey: '',
+    showLoginModal: false,
+    hasWxAuth: false
   },
 
   onLoad() {
+    const me = store.getMe();
+    if (!me.hasWxAuth) {
+      this.setData({ showLoginModal: true });
+    }
     this.applyList();
   },
 
   onShow() {
+    const me = store.getMe();
+    this.setData({ hasWxAuth: !!me.hasWxAuth });
+    if (!me.hasWxAuth && !this.data.showLoginModal) {
+      this.setData({ showLoginModal: true });
+    }
     this.applyList();
   },
 
@@ -56,6 +67,33 @@ Page({
       });
     }
     this.setData({ posts });
+  },
+
+  wxLogin() {
+    const that = this;
+    wx.getUserProfile({
+      desc: '用于完善会员资料',
+      success: (res) => {
+        const userInfo = res.userInfo;
+        store.updateMe({
+          nickname: userInfo.nickName,
+          avatarUrl: userInfo.avatarUrl,
+          hasWxAuth: true
+        });
+        wx.showToast({ title: '登录成功', icon: 'success' });
+        that.setData({ showLoginModal: false });
+        const app = getApp();
+        if (app && app.syncGlobalFromStore) app.syncGlobalFromStore();
+      },
+      fail: (err) => {
+        wx.showToast({ title: '登录失败', icon: 'none' });
+        console.log('wx.getUserProfile fail:', err);
+      }
+    });
+  },
+
+  closeLoginModal() {
+    this.setData({ showLoginModal: false });
   },
 
   onGameTap(e) {

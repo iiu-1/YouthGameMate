@@ -11,8 +11,12 @@
     >
       <view
         wx:if="{{item.senderId !== meId}}"
-        class="avatar avatar-text"
-      >{{otherUser.nickname ? otherUser.nickname.charAt(0) : '用'}}</view>
+        class="avatar-wrapper"
+        bindtap="goToUserHome"
+      >
+        <image wx:if="{{otherUser.avatarUrl}}" class="avatar avatar-img" src="{{otherUser.avatarUrl}}" mode="aspectFill"/>
+        <view wx:else class="avatar avatar-text">{{otherUser.nickname ? otherUser.nickname.charAt(0) : '用'}}</view>
+      </view>
 
       <view class="message-content">
         <view class="message-bubble">

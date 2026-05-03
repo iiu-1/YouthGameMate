@@ -29,11 +29,20 @@
   margin: 0 20rpx;
 }
 
+.avatar-wrapper {
+  margin: 0 20rpx;
+}
+
+.avatar-img {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
 .avatar-text {
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
-  margin: 0 20rpx;
   background: linear-gradient(135deg, #6C5CE7 0%, #a29bfe 100%);
   color: #FFFFFF;
   display: flex;

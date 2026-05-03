@@ -6,7 +6,7 @@ Page({
     meId: '',
     convId: '',
     peerId: '',
-    otherUser: { nickname: '', dormitory: '' },
+    otherUser: { nickname: '', dormitory: '', avatarUrl: '' },
     userInfo: { nickName: '', avatarUrl: '' },
     messages: [],
     inputValue: ''
@@ -50,12 +50,19 @@ Page({
       meId: me._id,
       convId: conv._id,
       peerId,
-      otherUser: { nickname: other.nickname || '用户', dormitory: other.dormitory || '' },
+      otherUser: { nickname: other.nickname || '用户', dormitory: other.dormitory || '', avatarUrl: other.avatarUrl || '' },
       userInfo: { nickName: me.nickname || '我', avatarUrl: me.avatarUrl || '' },
       messages: store.getMessages(conv._id)
     });
 
     wx.setNavigationBarTitle({ title: other.nickname || '私聊' });
+  },
+
+  goToUserHome() {
+    const { peerId } = this.data;
+    wx.navigateTo({
+      url: `/pages/user-home/user-home?id=${peerId}`
+    });
   },
 
   onInput(e) {

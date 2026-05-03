@@ -121,8 +121,10 @@ Page({
 
     if (index > -1) {
       onlineTime.splice(index, 1);
+      wx.showToast({ title: '已取消选择', icon: 'none', duration: 1000 });
     } else {
       onlineTime.push(time);
+      wx.showToast({ title: `已添加${time}`, icon: 'success', duration: 1000 });
     }
 
     this.setData({ 'formData.onlineTime': onlineTime });

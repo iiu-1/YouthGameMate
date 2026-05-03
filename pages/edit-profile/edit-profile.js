@@ -91,8 +91,11 @@ Page({
 
     if (index > -1) {
       games.splice(index, 1);
+      wx.showToast({ title: '已取消选择', icon: 'none', duration: 1000 });
     } else if (games.length < 5) {
       games.push(game);
+      const gameName = GAME_NAME[game] || game;
+      wx.showToast({ title: `已添加${gameName}`, icon: 'success', duration: 1000 });
     } else {
       wx.showToast({ title: '最多选择5个游戏', icon: 'none' });
       return;
